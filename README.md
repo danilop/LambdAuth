@@ -81,14 +81,11 @@ The same use cases can be implemented on a Mobile device using the [AWS Mobile S
 
 The APIs are exposed as AWS Lambda Functions:
 
-- `LambdAuthCreateUser(email, password) { created: true / false }`
-
-- `LambdAuthVerifyUser(email, verify) { verified: true / false}`
-
-- `LambdAuthLogin(email, password) { login: true / false,	identityId: identityId, token: token }`
-
-- `LambdAuthChangePassword(email, oldPassword, newPassword) { changed: true / false }`
-
-- `LambdAuthLostPassword(email) { sent: true / false }`
-
-- `LambdAuthResetPassword(email, lost, password) { changed: true / false }`
+| Function              | Input                         | Output                                 |
+|-----------------------|-------------------------------|----------------------------------------|
+|LambdAuthCreateUser    |email, password                | created: true / false                  |
+|LambdAuthVerifyUser    |email, verify                  | verified: true / false                 |
+|LambdAuthLogin         |email, password                | login: true / false,	identityId, token|
+|LambdAuthChangePassword|email, oldPassword, newPassword | changed: true / false                 |
+|LambdAuthLostPassword  |email                          | sent: true / false                     |
+|LambdAuthResetPassword |email, lost, password          | changed: true / false                  |
