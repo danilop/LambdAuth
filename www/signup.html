@@ -1,0 +1,80 @@
+<html>
+<head>
+  <title>Sample Sign Up Page</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.28.min.js"></script>
+	<script>
+  AWS.config.region = '<REGION>';
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: '<IDENTITY_POOL_ID>'
+  });
+  var lambda = new AWS.Lambda();
+	</script>
+  <h1>Sample Sign Up Page</h1>
+  <div id="info">
+  Sign Up
+  </div>
+  <table>
+    <tr>
+      <td>Email</td>
+      <td><input type="email" id="email" size="20">
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td><input type="password" id="password" size="20">
+    </tr>
+    <tr>
+      <td>Verify Password</td>
+      <td><input type="password" id="verifyPassword" size="20">
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button id="signup-button">Sign Up</button>
+      </td>
+    </tr>
+		<tr>
+      <td colspan="2" class="center">
+				<a href="index.html">Back</a>
+      </td>
+    </tr>
+  </table>
+  <script>
+  var info = document.getElementById('info');
+  var email = document.getElementById('email');
+  var password = document.getElementById('password');
+  var verifyPassword = document.getElementById('verifyPassword');
+  var signupButton = document.getElementById('signup-button');
+  signupButton.addEventListener('click', function() {
+    info.innerHTML = 'Sign Up...';
+		if (email.value == null || email.value == '') {
+    	info.innerHTML = 'Please specify your email address.';
+    } else if (password.value == null || password.value == '') {
+      info.innerHTML = 'Please specify a password.';
+    } else if (password.value != verifyPassword.value) {
+        info.innerHTML = 'Passwords are <b>different</b>, please check.';
+    } else {
+      var input = {
+        email: email.value,
+        password: password.value,
+      };
+      lambda.invoke({
+        FunctionName: 'LambdAuthCreateUser',
+        Payload: JSON.stringify(input)
+      }, function(err, data) {
+        if (err) console.log(err, err.stack);
+        else {
+          var output = JSON.parse(data.Payload);
+          if (output.created) {
+            info.innerHTML = 'User ' + input.email + ' created. Please check your email to validate the user and enable login.';
+          } else {
+            info.innerHTML = 'User <b>not</b> created.';
+          }
+        }
+      });
+    }
+  });
+  </script>
+</body>
+</html>

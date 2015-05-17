@@ -1,0 +1,96 @@
+<html>
+<head>
+  <title>Sample Lost Password Page</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.28.min.js"></script>
+	<script>
+  AWS.config.region = '<REGION>';
+	AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: '<IDENTITY_POOL_ID>'
+  });
+  var lambda = new AWS.Lambda();
+	</script>
+  <h1>Sample Lost Password Page</h1>
+  <div id="info">
+  Type your new password
+  </div>
+  <table>
+    <tr>
+      <td>Password</td>
+      <td><input type="password" id="password" size="20">
+    </tr>
+    <tr>
+      <td>Verify Password</td>
+      <td><input type="password" id="verifyPassword" size="20">
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button id="reset-password-button">Reset Password</button>
+      </td>
+    </tr>
+		<tr>
+      <td colspan="2" class="center">
+				<a href="index.html">Back</a>
+      </td>
+    </tr>
+  </table>
+  <script>
+  function getUrlParams() {
+    var p = {};
+    var match,
+      pl     = /\+/g,  // Regex for replacing addition symbol with a space
+      search = /([^&=]+)=?([^&]*)/g,
+      decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+      query  = window.location.search.substring(1);
+
+    while (match = search.exec(query))
+      p[decode(match[1])] = decode(match[2]);
+    return p;
+  }
+  var resetPasswordButton = document.getElementById('reset-password-button');
+  var password = document.getElementById('password');
+  var verifyPassword = document.getElementById('verifyPassword');
+  var info = document.getElementById('info');
+  var urlParams = getUrlParams();
+	var email = urlParams['email'] || null;
+	var lost = urlParams['lost'] || null;
+	if (email) {
+		info.innerHTML = 'Type your new password for user ' + email;
+	}
+  resetPasswordButton.addEventListener('click', function() {
+		if (password.value == null || password.value == '') {
+      info.innerHTML = 'Please specify a password.';
+    } else if (password.value != verifyPassword.value) {
+      info.innerHTML = 'Passwords are <b>not</b> the same, please check.';
+    } else {
+	    if ((!email)||(!lost)) {
+	      info.innerHTML = 'Please specify email and lost token in the URL.';
+	    } else {
+		    info.innerHTML = 'Trying to reset password for user ' + email + ' ...';
+	      var input = {
+	        email: email,
+	        lost: lost,
+					password: password.value
+	      };
+	      lambda.invoke({
+	        FunctionName: 'LambdAuthResetPassword',
+	        Payload: JSON.stringify(input)
+	      }, function(err, data) {
+	        if (err) console.log(err, err.stack);
+	        else {
+	          var output = JSON.parse(data.Payload);
+	          if (output.changed) {
+	            info.innerHTML = 'Password changed for user ' + email;
+	          } else {
+	            info.innerHTML = 'Password <b>not</b> changed.';
+	          }
+	        }
+	      });
+	    }
+    }
+	});
+  </script>
+</body>
+</html>

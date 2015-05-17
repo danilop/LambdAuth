@@ -1,0 +1,30 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "mobileanalytics:PutEvents",
+                "cognito-sync:*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:InvokeFunction"
+            ],
+            "Resource": [
+                "arn:aws:lambda:eu-west-1:<AWS_ACCOUNT_ID>:function:LambdAuthCreateUser",
+                "arn:aws:lambda:eu-west-1:<AWS_ACCOUNT_ID>:function:LambdAuthVerifyUser",
+                "arn:aws:lambda:eu-west-1:<AWS_ACCOUNT_ID>:function:LambdAuthChangePassword",
+                "arn:aws:lambda:eu-west-1:<AWS_ACCOUNT_ID>:function:LambdAuthLostUser",
+                "arn:aws:lambda:eu-west-1:<AWS_ACCOUNT_ID>:function:LambdAuthLostPassword",
+                "arn:aws:lambda:eu-west-1:<AWS_ACCOUNT_ID>:function:LambdAuthResetPassword",
+                "arn:aws:lambda:eu-west-1:<AWS_ACCOUNT_ID>:function:LambdAuthLogin"
+            ]
+        }
+    ]
+}
