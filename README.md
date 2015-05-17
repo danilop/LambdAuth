@@ -7,10 +7,12 @@ The authentication can be used with [Amazon Cognito](http://aws.amazon.com/cogni
 Passwords are not saved in clear in the database, but "salted" (via [HMAC-SHA1](http://en.wikipedia.org/wiki/Hash-based_message_authentication_code) using a dedicated, random salt for each password.
 
 The basic functions implemented are:
-- new user creation, validating the email address provided
+- new user creation, an email is sent to validate the email address provided
 - login, getting back an authentication "token" that can be used with Amazon Cognito to assume an Authenticated Role via Developer Authenticated Identities
 - password change
-- password reset, via email
+- password reset, an email is sent with a link to reset the password
+
+The login function is calling in the backend [GetOpenIdTokenForDeveloperIdentity](http://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetOpenIdTokenForDeveloperIdentity.html), a Cognito API to register (or retrieve) the IdentityId and an OpenID Connect token for a user authenticated by your backend authentication process.
 
 ## License
 
