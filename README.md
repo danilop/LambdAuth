@@ -14,6 +14,8 @@ The basic functions implemented are:
 
 The login function is calling in the backend [GetOpenIdTokenForDeveloperIdentity](http://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetOpenIdTokenForDeveloperIdentity.html), a Cognito API to register (or retrieve) the IdentityId and an OpenID Connect token for a user authenticated by your backend authentication process.
 
+A sample implementation can be found at [http://lambdauth.danilop.net](http://lambdauth.danilop.net).
+
 ## License
 
 Copyright (c) 2015 Danilo Poccia, http://danilop.net
