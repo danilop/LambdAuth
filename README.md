@@ -32,7 +32,7 @@ A sample installation script using Bash (`init.sh`) is provided to install and c
 - the [Amazon Cognito](http://aws.amazon.com/cognito/) identity pool
 - the [AWS Lambda](http://aws.amazon.com/lambda/) functions
 
-The `init.sh` script requires a configured [AWS Command Line Interface (CLI)](http://aws.amazon.com/cli/) and the [jq](http://stedolan.github.io/jq/) tool.
+The `init.sh` script requires a configured [AWS Command Line Interface (CLI)](http://aws.amazon.com/cli/) and the [jq](http://stedolan.github.io/jq/) tool. The script is designed to be non destructive, so you can run it again (e.g. if you delete a role) without affecting the other resources.
 
 **Before running the `init.sh` script, set up your configuration in the `config.json` file**:
 
