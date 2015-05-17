@@ -4,7 +4,7 @@ A sample authentication service implemented with a server-less architecture, usi
 
 The authentication can be used with [Amazon Cognito](http://aws.amazon.com/cognito/) to assume an Authenticated Role via [Developer Authenticated Identities](http://docs.aws.amazon.com/cognito/devguide/identity/developer-authenticated-identities/).
 
-Passwords are not saved in clear in the database, but "salted" (via [HMAC-SHA1](http://en.wikipedia.org/wiki/Hash-based_message_authentication_code) using a dedicated, random salt for each password.
+Passwords are not saved in clear in the database, but "salted" (via [HMAC-SHA1](http://en.wikipedia.org/wiki/Hash-based_message_authentication_code)) using a dedicated, random salt for each password.
 
 The basic functions implemented are:
 - new user creation, an email is sent to validate the email address provided
