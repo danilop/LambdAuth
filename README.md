@@ -40,10 +40,10 @@ The `init.sh` script requires a configured [AWS Command Line Interface (CLI)](ht
 
 - your AWS account (12-digit number)
 - the AWS region (e.g. "eu-west-1")
-- the S3 bucket to use for the sample HTML pages
-- the Cache-Control: max-age value, in seconds, to use on S3 (e.g. if distributed by [Amazon CloudFront](http://aws.amazon.com/cloudfront/) or another CDN)
-- the DynamoDB table to create/use
-- the Cognito identity pool name to create/use (the identity pool id is automatically overwritten if present in the config.json file)
+- the Amazon S3 bucket to use for the sample HTML pages
+- the Cache-Control: max-age value, in seconds, to use on Amazon S3 (e.g. if distributed by [Amazon CloudFront](http://aws.amazon.com/cloudfront/) or another CDN)
+- the Amazon DynamoDB table to create/use
+- the Amazon Cognito identity pool name to create/use (the identity pool id is automatically overwritten if present in the config.json file)
 - the Developer Provider Name to use with Amazon Cognito
 - the external name to be included in emails
 - the email source for emails (must be verified by Amazon SES)
