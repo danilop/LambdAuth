@@ -4,7 +4,7 @@ A sample authentication service implemented with a server-less architecture, usi
 
 The authentication can be used with [Amazon Cognito](http://aws.amazon.com/cognito/) to assume an Authenticated Role via [Developer Authenticated Identities](http://docs.aws.amazon.com/cognito/devguide/identity/developer-authenticated-identities/).
 
-The password are not save in clear in the database, but "salted" (via [HMAC-SHA1](http://en.wikipedia.org/wiki/Hash-based_message_authentication_code) using a dedicated, random salt for each password.
+Passwords are not saved in clear in the database, but "salted" (via [HMAC-SHA1](http://en.wikipedia.org/wiki/Hash-based_message_authentication_code) using a dedicated, random salt for each password.
 
 The basic functions implemented are:
 - new user creation, validating the email address provided
@@ -30,7 +30,7 @@ A sample installation script using Bash (`init.sh`) is provided to install and c
 
 The `init.sh` script requires a configured [AWS Command Line Interface (CLI)](http://aws.amazon.com/cli/) and the [jq](http://stedolan.github.io/jq/) tool.
 
-*Before running the `init.sh` script, set up your configuration in the `config.json` file*:
+**Before running the `init.sh` script, set up your configuration in the `config.json` file**:
 
 - your AWS account (12-digit number)
 - the AWS region (e.g. "eu-west-1")
@@ -79,15 +79,14 @@ The same use cases can be implemented on a Mobile device using the [AWS Mobile S
 
 The APIs are exposed as AWS Lambda Functions:
 
-- LambdAuthCreateUser(email, password) -> { created: true / false }
+- `LambdAuthCreateUser(email, password) -> { created: true / false }`
 
-- LambdAuthVerifyUser(email, verify) -> { verified: true / false}
+- `LambdAuthVerifyUser(email, verify) -> { verified: true / false}`
 
-- LambdAuthLogin(email, password) -> { login: true / false,	identityId: identityId, token: token }
+- `LambdAuthLogin(email, password) -> { login: true / false,	identityId: identityId, token: token }`
 
-- LambdAuthChangePassword(email, oldPassword, newPassword) -> { changed: true / false }
+- `LambdAuthChangePassword(email, oldPassword, newPassword) -> { changed: true / false }`
 
-- LambdAuthLostPassword(email) -> { sent: true / false }
+- `LambdAuthLostPassword(email) -> { sent: true / false }`
 
-- LambdAuthResetPassword(email, lost, password) -> { changed: true / false }
-
+- `LambdAuthResetPassword(email, lost, password) -> { changed: true / false }`
