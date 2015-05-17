@@ -4,13 +4,15 @@ A sample authentication service implemented with a server-less architecture, usi
 
 The authentication can be used with [Amazon Cognito](http://aws.amazon.com/cognito/) to assume an Authenticated Role via [Developer Authenticated Identities](http://docs.aws.amazon.com/cognito/devguide/identity/developer-authenticated-identities/).
 
-Passwords are not saved in clear in the database, but "salted" (via [HMAC-SHA1](http://en.wikipedia.org/wiki/Hash-based_message_authentication_code)) using a dedicated, random salt for each password.
-
 The basic functions implemented are:
 - new user creation, an email is sent to validate the email address provided
 - login, getting back an authentication "token" that can be used with Amazon Cognito to assume an Authenticated Role via Developer Authenticated Identities
 - password change
 - password reset, an email is sent with a link to reset the password
+
+Passwords are not saved in clear in the database, but "salted" (via [HMAC-SHA1](http://en.wikipedia.org/wiki/Hash-based_message_authentication_code)) using a dedicated, random salt for each password.
+
+[Amazon SES](http://aws.amazon.com/ses/) is used to send all emails. 
 
 The login function is calling in the backend [GetOpenIdTokenForDeveloperIdentity](http://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetOpenIdTokenForDeveloperIdentity.html), a Cognito API to register (or retrieve) the IdentityId and an OpenID Connect token for a user authenticated by your backend authentication process.
 
@@ -39,14 +41,14 @@ The `init.sh` script requires a configured [AWS Command Line Interface (CLI)](ht
 - your AWS account (12-digit number)
 - the AWS region (e.g. "eu-west-1")
 - the S3 bucket to use for the sample HTML pages
-- the Cache-Control: max-age value, in seconds, to use on S3 (e.g. if distributed by CloudFront or another CDN)
+- the Cache-Control: max-age value, in seconds, to use on S3 (e.g. if distributed by [Amazon CloudFront](http://aws.amazon.com/cloudfront/) or another CDN)
 - the DynamoDB table to create/use
 - the Cognito identity pool name to create/use (the identity pool id is automatically overwritten if present in the config.json file)
-- the Developer Provider Name to use with Cognito
+- the Developer Provider Name to use with Amazon Cognito
 - the external name to be included in emails
-- the email source for emails (must be verified via SES)
-- the link to the verification page (usually http://bucket.s3.amazonaws.com/verify.html, but can be customized using a bucket name that is a DNS domain, CloudFront or another CDN)
-- the link to the password reset page (usually http://bucket.s3.amazonaws.com/reset.html, but can be customized using a bucket name that is a DNS domain, CloudFront or another CDN)
+- the email source for emails (must be verified by Amazon SES)
+- the link to the verification page (usually http://bucket.s3.amazonaws.com/verify.html, but can be customized using a bucket name that is a DNS domain, Amazon CloudFront or another CDN)
+- the link to the password reset page (usually http://bucket.s3.amazonaws.com/reset.html, but can be customized using a bucket name that is a DNS domain, Amazon CloudFront or another CDN)
 
 ```
 {
