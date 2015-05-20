@@ -93,7 +93,7 @@ for f in $(ls -1 Cognito*); do
   echo "Creating role $role end"
 done
 echo "Setting identity pool roles begin..."
-roles='{"unauthenticated":"arn:aws:iam::514247453397:role/'"$unauthRole"'","authenticated":"arn:aws:iam::514247453397:role/'"$authRole"'"}'
+roles='{"unauthenticated":"arn:aws:iam::$AWS_ACCOUNT_ID:role/'"$unauthRole"'","authenticated":"arn:aws:iam::$AWS_ACCOUNT_ID:role/'"$authRole"'"}'
 echo "Roles: $roles"
 aws cognito-identity set-identity-pool-roles \
   --identity-pool-id $IDENTITY_POOL_ID \
