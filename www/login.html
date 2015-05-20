@@ -63,16 +63,13 @@
             info.innerHTML = '<b>Not</b> logged in';
           } else {
             info.innerHTML = 'Logged in with IdentityId: ' + output.identityId + '<br>';
-            var logins = {
-              "<DEVELOPER_PROVIDER_NAME>": output.token
-            };
-						var creds = AWS.config.credentials;
-						creds.params.IdentityId = output.identityId;
-						creds.params.Logins = {
-							'cognito-identity.amazonaws.com': output.token
-						};
-						creds.expired = true;
-						// Do something with the authenticated role
+            var creds = AWS.config.credentials;
+	    creds.params.IdentityId = output.identityId;
+	    creds.params.Logins = {
+	      'cognito-identity.amazonaws.com': output.token
+	    };
+	    creds.expired = true;
+	    // Do something with the authenticated role
           }
         }
       });
