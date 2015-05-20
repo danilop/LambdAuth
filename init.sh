@@ -56,7 +56,11 @@ jq '.IDENTITY_POOL_ID="'"$IDENTITY_POOL_ID"'"' config.json.orig > config.json
 rm config.json.orig
 
 cd iam
-rm edit/*
+if [ -d "edit" ]; then
+  rm edit/*
+else
+  mkdir edit
+fi
 
 # Create IAM Roles for Cognito
 for f in $(ls -1 trust*); do
@@ -86,7 +90,6 @@ for f in $(ls -1 Cognito*); do
   aws iam create-role --role-name $role --assume-role-policy-document file://edit/$trust
 	aws iam update-assume-role-policy --role-name $role --policy-document file://edit/$trust
   aws iam put-role-policy --role-name $role --policy-name $role --policy-document file://edit/$f
-  rm $f.edit
   echo "Creating role $role end"
 done
 echo "Setting identity pool roles begin..."
