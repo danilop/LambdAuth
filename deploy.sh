@@ -38,8 +38,14 @@ for f in $(ls -1); do
 done
 
 echo "Updating www content begin..."
+
 cd www
-rm edit/*
+if [ -d "edit" ]; then
+  rm edit/*
+else
+  mkdir edit
+fi
+
 for f in $(ls -1 *.*); do
   echo "Updating $f begin..."
   sed -e "s/<REGION>/$REGION/g" \
