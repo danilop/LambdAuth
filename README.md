@@ -50,7 +50,7 @@ The `init.sh` script requires a configured [AWS Command Line Interface (CLI)](ht
 - the link to the verification page (usually http://bucket.s3.amazonaws.com/verify.html, but can be customized using a bucket name that is a DNS domain, Amazon CloudFront or another CDN)
 - the link to the password reset page (usually http://bucket.s3.amazonaws.com/reset.html, but can be customized using a bucket name that is a DNS domain, Amazon CloudFront or another CDN)
 
-```
+```json
 {
   "AWS_ACCOUNT_ID": "123412341234",
   "REGION": "eu-west-1",
