@@ -69,6 +69,7 @@ for f in $(ls -1 trust*); do
       -e "s/<DYNAMODB_TABLE>/$DDB_TABLE/g" \
       -e "s/<DYNAMODB_EMAIL_INDEX>/$DDB_EMAIL_INDEX/g" \
       -e "s/<IDENTITY_POOL_ID>/$IDENTITY_POOL_ID/g" \
+      -e "s/<REGION>/$REGION/g" \
       $f > edit/$f
   echo "Editing trust from $f end"
 done
@@ -79,6 +80,7 @@ for f in $(ls -1 Cognito*); do
       -e "s/<DYNAMODB_TABLE>/$DDB_TABLE/g" \
       -e "s/<DYNAMODB_EMAIL_INDEX>/$DDB_EMAIL_INDEX/g" \
       -e "s/<IDENTITY_POOL_ID>/$IDENTITY_POOL_ID/g" \
+      -e "s/<REGION>/$REGION/g" \
 	      $f > edit/$f
   if [[ $f == *Unauth_* ]]; then
     trust="trust_policy_cognito_unauth.json"
@@ -88,12 +90,12 @@ for f in $(ls -1 Cognito*); do
     authRole="$role"
   fi
   aws iam create-role --role-name $role --assume-role-policy-document file://edit/$trust
-	aws iam update-assume-role-policy --role-name $role --policy-document file://edit/$trust
+  aws iam update-assume-role-policy --role-name $role --policy-document file://edit/$trust
   aws iam put-role-policy --role-name $role --policy-name $role --policy-document file://edit/$f
   echo "Creating role $role end"
 done
 echo "Setting identity pool roles begin..."
-roles='{"unauthenticated":"arn:aws:iam::$AWS_ACCOUNT_ID:role/'"$unauthRole"'","authenticated":"arn:aws:iam::$AWS_ACCOUNT_ID:role/'"$authRole"'"}'
+roles='{"unauthenticated":"arn:aws:iam::'"$AWS_ACCOUNT_ID"':role/'"$unauthRole"'","authenticated":"arn:aws:iam::'"$AWS_ACCOUNT_ID"':role/'"$authRole"'"}'
 echo "Roles: $roles"
 aws cognito-identity set-identity-pool-roles \
   --identity-pool-id $IDENTITY_POOL_ID \
@@ -109,10 +111,11 @@ for f in $(ls -1 LambdAuth*); do
       -e "s/<DYNAMODB_TABLE>/$DDB_TABLE/g" \
       -e "s/<DYNAMODB_EMAIL_INDEX>/$DDB_EMAIL_INDEX/g" \
       -e "s/<IDENTITY_POOL_ID>/$IDENTITY_POOL_ID/g" \
+      -e "s/<REGION>/$REGION/g" \
       $f > edit/$f
 	trust="trust_policy_lambda.json"
   aws iam create-role --role-name $role --assume-role-policy-document file://edit/$trust
-	aws iam update-assume-role-policy --role-name $role --policy-document file://edit/$trust
+  aws iam update-assume-role-policy --role-name $role --policy-document file://edit/$trust
   aws iam put-role-policy --role-name $role --policy-name $role --policy-document file://edit/$f
   echo "Creating role $role end"
 done
