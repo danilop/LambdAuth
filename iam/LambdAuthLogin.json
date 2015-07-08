@@ -6,14 +6,14 @@
                 "dynamodb:GetItem"
             ],
             "Effect": "Allow",
-            "Resource": "arn:aws:dynamodb:eu-west-1:<AWS_ACCOUNT_ID>:table/<DYNAMODB_TABLE>"
+            "Resource": "arn:aws:dynamodb:<REGION>:<AWS_ACCOUNT_ID>:table/<DYNAMODB_TABLE>"
         },
         {
             "Effect": "Allow",
             "Action": [
                 "cognito-identity:GetOpenIdTokenForDeveloperIdentity"
             ],
-            "Resource": "arn:aws:cognito-identity:eu-west-1:<AWS_ACCOUNT_ID>:identitypool/<IDENTITY_POOL_ID>"
+            "Resource": "arn:aws:cognito-identity:<REGION>:<AWS_ACCOUNT_ID>:identitypool/<IDENTITY_POOL_ID>"
         },
         {
             "Sid": "",
