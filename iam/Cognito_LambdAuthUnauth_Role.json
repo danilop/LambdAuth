@@ -17,12 +17,12 @@
                 "lambda:InvokeFunction"
             ],
             "Resource": [
-                "arn:aws:lambda:eu-west-1:<AWS_ACCOUNT_ID>:function:LambdAuthCreateUser",
-                "arn:aws:lambda:eu-west-1:<AWS_ACCOUNT_ID>:function:LambdAuthVerifyUser",
-                "arn:aws:lambda:eu-west-1:<AWS_ACCOUNT_ID>:function:LambdAuthLostUser",
-                "arn:aws:lambda:eu-west-1:<AWS_ACCOUNT_ID>:function:LambdAuthLostPassword",
-                "arn:aws:lambda:eu-west-1:<AWS_ACCOUNT_ID>:function:LambdAuthResetPassword",
-                "arn:aws:lambda:eu-west-1:<AWS_ACCOUNT_ID>:function:LambdAuthLogin"
+                "arn:aws:lambda:<REGION>:<AWS_ACCOUNT_ID>:function:LambdAuthCreateUser",
+                "arn:aws:lambda:<REGION>:<AWS_ACCOUNT_ID>:function:LambdAuthVerifyUser",
+                "arn:aws:lambda:<REGION>:<AWS_ACCOUNT_ID>:function:LambdAuthLostUser",
+                "arn:aws:lambda:<REGION>:<AWS_ACCOUNT_ID>:function:LambdAuthLostPassword",
+                "arn:aws:lambda:<REGION>:<AWS_ACCOUNT_ID>:function:LambdAuthResetPassword",
+                "arn:aws:lambda:<REGION>:<AWS_ACCOUNT_ID>:function:LambdAuthLogin"
             ]
         }
     ]

@@ -68,6 +68,7 @@ for f in $(ls -1 trust*); do
   sed -e "s/<AWS_ACCOUNT_ID>/$AWS_ACCOUNT_ID/g" \
       -e "s/<DYNAMODB_TABLE>/$DDB_TABLE/g" \
       -e "s/<DYNAMODB_EMAIL_INDEX>/$DDB_EMAIL_INDEX/g" \
+      -e "s/<REGION>/$REGION/g" \
       -e "s/<IDENTITY_POOL_ID>/$IDENTITY_POOL_ID/g" \
       $f > edit/$f
   echo "Editing trust from $f end"
@@ -78,6 +79,7 @@ for f in $(ls -1 Cognito*); do
   sed -e "s/<AWS_ACCOUNT_ID>/$AWS_ACCOUNT_ID/g" \
       -e "s/<DYNAMODB_TABLE>/$DDB_TABLE/g" \
       -e "s/<DYNAMODB_EMAIL_INDEX>/$DDB_EMAIL_INDEX/g" \
+      -e "s/<REGION>/$REGION/g" \
       -e "s/<IDENTITY_POOL_ID>/$IDENTITY_POOL_ID/g" \
 	      $f > edit/$f
   if [[ $f == *Unauth_* ]]; then
@@ -93,7 +95,7 @@ for f in $(ls -1 Cognito*); do
   echo "Creating role $role end"
 done
 echo "Setting identity pool roles begin..."
-roles='{"unauthenticated":"arn:aws:iam::$AWS_ACCOUNT_ID:role/'"$unauthRole"'","authenticated":"arn:aws:iam::$AWS_ACCOUNT_ID:role/'"$authRole"'"}'
+roles='{"unauthenticated":"arn:aws:iam::'"$AWS_ACCOUNT_ID"':role/'"$unauthRole"'","authenticated":"arn:aws:iam::'"$AWS_ACCOUNT_ID"':role/'"$authRole"'"}'
 echo "Roles: $roles"
 aws cognito-identity set-identity-pool-roles \
   --identity-pool-id $IDENTITY_POOL_ID \
@@ -109,6 +111,7 @@ for f in $(ls -1 LambdAuth*); do
       -e "s/<DYNAMODB_TABLE>/$DDB_TABLE/g" \
       -e "s/<DYNAMODB_EMAIL_INDEX>/$DDB_EMAIL_INDEX/g" \
       -e "s/<IDENTITY_POOL_ID>/$IDENTITY_POOL_ID/g" \
+      -e "s/<REGION>/$REGION/g" \
       $f > edit/$f
 	trust="trust_policy_lambda.json"
   aws iam create-role --role-name $role --assume-role-policy-document file://edit/$trust
