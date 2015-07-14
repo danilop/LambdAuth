@@ -66,6 +66,12 @@ The `init.sh` script requires a configured [AWS Command Line Interface (CLI)](ht
 }
 ```
 
+At the end of the `init.sh` script, you can start creating users pointing your browser to:
+
+`http://bucket.s3.amazonaws.com/index.html` (replacing `bucket` with your bucket name)
+
+As an optional step, you may want to configure Amazon S3 for [Website Hosting](http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html) and use Amazon CloudFront to [distribute the static content](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GettingStarted.html).
+
 A sample deployment script using Bash (`deploy.sh`) is provided to update the AWS Lambda functions and the sample HTML pages on the Amazon S3 bucket.
 
 ## Usage
