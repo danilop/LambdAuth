@@ -68,6 +68,7 @@ for f in $(ls -1 trust*); do
   sed -e "s/<AWS_ACCOUNT_ID>/$AWS_ACCOUNT_ID/g" \
       -e "s/<DYNAMODB_TABLE>/$DDB_TABLE/g" \
       -e "s/<DYNAMODB_EMAIL_INDEX>/$DDB_EMAIL_INDEX/g" \
+      -e "s/<REGION>/$REGION/g" \
       -e "s/<IDENTITY_POOL_ID>/$IDENTITY_POOL_ID/g" \
       -e "s/<REGION>/$REGION/g" \
       $f > edit/$f
@@ -79,6 +80,7 @@ for f in $(ls -1 Cognito*); do
   sed -e "s/<AWS_ACCOUNT_ID>/$AWS_ACCOUNT_ID/g" \
       -e "s/<DYNAMODB_TABLE>/$DDB_TABLE/g" \
       -e "s/<DYNAMODB_EMAIL_INDEX>/$DDB_EMAIL_INDEX/g" \
+      -e "s/<REGION>/$REGION/g" \
       -e "s/<IDENTITY_POOL_ID>/$IDENTITY_POOL_ID/g" \
       -e "s/<REGION>/$REGION/g" \
 	      $f > edit/$f
