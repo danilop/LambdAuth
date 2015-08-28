@@ -65,7 +65,7 @@ function storeUser(email, password, salt, fn) {
 
 function sendVerificationEmail(email, token, fn) {
 	var subject = 'Verification Email for ' + config.EXTERNAL_NAME;
-	var verificationLink = config.VERIFICATION_PAGE + '?email=' + email + '&verify=' + token;
+	var verificationLink = config.VERIFICATION_PAGE + '?email=' + encodeURIComponent(email) + '&verify=' + token;
 	ses.sendEmail({
 		Source: config.EMAIL_SOURCE,
 		Destination: {
