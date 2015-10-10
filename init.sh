@@ -16,12 +16,19 @@ fi
 
 # Read other configuration from config.json
 AWS_ACCOUNT_ID=$(jq -r '.AWS_ACCOUNT_ID' config.json)
+CLI_PROFILE=$(jq -r '.CLI_PROFILE' config.json)
 REGION=$(jq -r '.REGION' config.json)
 BUCKET=$(jq -r '.BUCKET' config.json)
 MAX_AGE=$(jq -r '.MAX_AGE' config.json)
 DDB_TABLE=$(jq -r '.DDB_TABLE' config.json)
 IDENTITY_POOL_NAME=$(jq -r '.IDENTITY_POOL_NAME' config.json)
 DEVELOPER_PROVIDER_NAME=$(jq -r '.DEVELOPER_PROVIDER_NAME' config.json)
+
+#if a CLI Profile name is provided... use it.
+if [[ ! -z "$CLI_PROFILE" ]]; then
+  echo "setting session CLI profile to $CLI_PROFILE"
+  export AWS_DEFAULT_PROFILE=$CLI_PROFILE
+fi
 
 # Create S3 Bucket
 aws s3 mb s3://$BUCKET
