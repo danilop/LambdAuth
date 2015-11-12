@@ -48,7 +48,7 @@ The `init.sh` script requires a configured [AWS Command Line Interface (CLI)](ht
 - the Amazon Cognito identity pool name to create/use (the identity pool id is automatically overwritten if present in the config.json file)
 - the Developer Provider Name to use with Amazon Cognito
 - the external name to be included in emails
-- the email source for emails (must be verified by Amazon SES)
+- the email source for emails (must be [verified](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html) by Amazon SES)
 - the link to the verification page (usually http://bucket.s3.amazonaws.com/verify.html, but can be customized using a bucket name that is a DNS domain, Amazon CloudFront or another CDN)
 - the link to the password reset page (usually http://bucket.s3.amazonaws.com/reset.html, but can be customized using a bucket name that is a DNS domain, Amazon CloudFront or another CDN)
 
@@ -64,7 +64,7 @@ The `init.sh` script requires a configured [AWS Command Line Interface (CLI)](ht
   "EXTERNAL_NAME": "My Authentication",
   "EMAIL_SOURCE": "email@example.com",
   "VERIFICATION_PAGE": "http://bucket.s3.amazonaws.com/verify.html",
-  "RESET_PAGE": "http://bucket.s3.amazonaws.com/reset.html",
+  "RESET_PAGE": "http://bucket.s3.amazonaws.com/reset.html"
 }
 ```
 
