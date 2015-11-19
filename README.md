@@ -84,7 +84,7 @@ Sample HTML pages are provided to showcase how to use this framework with a Java
 - login.html - to login in, assuming an authenitcated role with Cognito
 - verify.html - to validate the email address of a new user
 - changePassword.html - to change password, knowing the old one
-- lostPAssword.html - to ask for a passwrod reser, via email
+- lostPassword.html - to ask for a passwrod reser, via email
 - reset.html - to reset the password, linked by the email sent for a lost password
 
 The same use cases can be implemented on a Mobile device using the [AWS Mobile SDK](http://aws.amazon.com/mobile/sdk/).
