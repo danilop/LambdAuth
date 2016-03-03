@@ -28,6 +28,28 @@ This code is licensed under the The MIT License (MIT). Please see the LICENSE fi
 
 ## Installation
 
+**Install aws CLI**
+
+- Check if the python is already installed by using `$ python --version`
+- Download CLI by `$ curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"`
+- UnZip CLI by `$ unzip awscli-bundle.zip`
+- Install CLI by `$ sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws`
+- check if the CLI is installed correctly by `$ aws --version`
+
+**Configure CLI**
+
+- Configure CLI with `$ aws configure`
+- Put the AWS Access Key ID when asked
+- Put the AWS Secret Access Key when asked
+- Put Default region name when asked
+- Put Default output format, press enter to keep the default which is JSON
+
+**Install jq**
+
+- Install jq on mac by `$ brew install jq`
+
+More details of installing aws CLI can be found here, more details on installing jq can be found here. 
+
 A sample installation script using Bash (`init.sh`) is provided to install and configure all necessary resources in your AWS account:
 
 - the [Amazon S3](http://aws.amazon.com/s3/) bucket to host the sample HTML pages
