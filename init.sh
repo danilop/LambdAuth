@@ -138,7 +138,7 @@ for f in $(ls -1|grep ^LambdAuth); do
   cd $f
   zip -r $f.zip index.js config.json
   aws lambda create-function --function-name ${f} \
-      --runtime nodejs \
+      --runtime nodejs4.3 \
       --role arn:aws:iam::"$AWS_ACCOUNT_ID":role/${f} \
       --handler index.handler \
       --zip-file fileb://${f}.zip \
