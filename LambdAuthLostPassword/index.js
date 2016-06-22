@@ -60,7 +60,8 @@ function storeLostToken(email, fn) {
 
 function sendLostPasswordEmail(email, token, fn) {
 	var subject = 'Password Lost for ' + config.EXTERNAL_NAME;
-	var lostLink = config.RESET_PAGE + '?email=' + email + '&lost=' + token;
+	var lostLink = config.RESET_PAGE + '?email=' + encodeURIComponent(email) + '&lost=' + token;
+
 	ses.sendEmail({
 		Source: config.EMAIL_SOURCE,
 		Destination: {
