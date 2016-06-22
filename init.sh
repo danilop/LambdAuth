@@ -16,7 +16,7 @@ fi
 
 # Read other configuration from config.json
 AWS_ACCOUNT_ID=$(jq -r '.AWS_ACCOUNT_ID' config.json)
-CLI_PROFILE=$(jq -r '.CLI_PROFILE' config.json)
+CLI_PROFILE=$(jq -r '.CLI_PROFILE // empty' config.json)
 REGION=$(jq -r '.REGION' config.json)
 BUCKET=$(jq -r '.BUCKET' config.json)
 MAX_AGE=$(jq -r '.MAX_AGE' config.json)
