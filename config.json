@@ -1,5 +1,6 @@
 {
   "AWS_ACCOUNT_ID": "123412341234",
+  "CLI_PROFILE": "default",
   "REGION": "eu-west-1",
   "BUCKET": "bucket",
   "MAX_AGE": "10",
