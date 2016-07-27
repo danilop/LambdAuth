@@ -11,7 +11,7 @@ var cognitoidentity = new AWS.CognitoIdentity();
 
 function computeHash(password, salt, fn) {
 	// Bytesize
-	var len = 128;
+	var len = config.CRYPTO_BYTE_SIZE;
 	var iterations = 4096;
 
 	if (3 == arguments.length) {

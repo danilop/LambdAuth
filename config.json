@@ -4,6 +4,7 @@
   "REGION": "eu-west-1",
   "BUCKET": "bucket",
   "MAX_AGE": "10",
+  "CRYPTO_BYTE_SIZE": 128,
   "DDB_TABLE": "LambdAuthUsers",
   "IDENTITY_POOL_NAME": "LambdAuth",
   "DEVELOPER_PROVIDER_NAME": "login.mycompany.myapp",

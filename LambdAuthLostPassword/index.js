@@ -31,7 +31,7 @@ function getUser(email, fn) {
 
 function storeLostToken(email, fn) {
 	// Bytesize
-	var len = 128;
+	var len = config.CRYPTO_BYTE_SIZE;
 	crypto.randomBytes(len, function(err, token) {
 		if (err) return fn(err);
 		token = token.toString('hex');

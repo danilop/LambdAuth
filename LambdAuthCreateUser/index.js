@@ -12,7 +12,7 @@ var ses = new AWS.SES();
 
 function computeHash(password, salt, fn) {
 	// Bytesize
-	var len = 128;
+	var len = config.CRYPTO_BYTE_SIZE;
 	var iterations = 4096;
 
 	if (3 == arguments.length) {
@@ -32,7 +32,7 @@ function computeHash(password, salt, fn) {
 
 function storeUser(email, password, salt, fn) {
 	// Bytesize
-	var len = 128;
+	var len = config.CRYPTO_BYTE_SIZE;
 	crypto.randomBytes(len, function(err, token) {
 		if (err) return fn(err);
 		token = token.toString('hex');
