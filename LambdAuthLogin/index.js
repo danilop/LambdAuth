@@ -83,7 +83,8 @@ exports.handler = function(event, context) {
 				// User not verified
 				console.log('User not verified: ' + email);
 				context.succeed({
-					login: false
+					login: false,
+					verified: false,
 				});
 			} else {
 				computeHash(clearPassword, salt, function(err, salt, hash) {
