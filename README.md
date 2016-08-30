@@ -3,7 +3,7 @@
 [![Join the chat at https://gitter.im/danilop/LambdAuth](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/danilop/LambdAuth?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 **Note:**
-- I released an updated version of this application in the code of my [AWS in Action book](https://www.manning.com/books/aws-lambda-in-action)
+- I released an updated version of this application in the code of my [AWS Lambda in Action book](https://www.manning.com/books/aws-lambda-in-action)
 - Please look for `SampleAuth` in the `Chapter10/` folder of the book repo https://github.com/danilop/AWS_Lambda_in_Action
 - A live demo of this new version is available at https://eventdrivenapps.com/#livedemos
 - For a production-ready solution, you can see [Amazon Cognito User Pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html)
