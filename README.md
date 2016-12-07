@@ -6,7 +6,7 @@
 - I released an updated version of this application in the code of my [AWS Lambda in Action book](https://www.manning.com/books/aws-lambda-in-action)
 - Please look for `SampleAuth` in the `Chapter10/` folder of the book repo https://github.com/danilop/AWS_Lambda_in_Action
 - A live demo of this new version is available at https://eventdrivenapps.com/#livedemos
-- For a production-ready solution, you can see [Amazon Cognito User Pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html)
+- For a production-ready solution, you can check [Amazon Cognito User Pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html)
 
 A sample authentication service implemented with a server-less architecture, using [AWS Lambda](http://aws.amazon.com/lambda/) to host and execute the code and [Amazon DynamoDB](http://aws.amazon.com/dynamodb/) as persistent storage. This provides a cost-efficient solution that is scalable and highly available.
 
