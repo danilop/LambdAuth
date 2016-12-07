@@ -43,7 +43,7 @@ aws dynamodb create-table --table-name $DDB_TABLE \
 echo "Creating DynamoDB Table $DDB_TABLE end (creation still in progress)"
 
 # Create Cognito Identity Pool
-IDENTITY_POOL_ID=$(aws cognito-identity list-identity-pools --max-results 1 \
+IDENTITY_POOL_ID=$(aws cognito-identity list-identity-pools --max-results 60 \
 	  --query 'IdentityPools[?IdentityPoolName == `'$IDENTITY_POOL_NAME'`].IdentityPoolId' \
 	  --output text --region $REGION)
 if [ -z "$IDENTITY_POOL_ID" ]; then
