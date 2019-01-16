@@ -14,15 +14,16 @@ function computeHash(password, salt, fn) {
 	// Bytesize
 	var len = config.CRYPTO_BYTE_SIZE;
 	var iterations = 4096;
+	var digest = 'sha1';
 
 	if (3 == arguments.length) {
-		crypto.pbkdf2(password, salt, iterations, len, fn);
+		crypto.pbkdf2(password, salt, iterations, len, digest, fn);
 	} else {
 		fn = salt;
 		crypto.randomBytes(len, function(err, salt) {
 			if (err) return fn(err);
 			salt = salt.toString('base64');
-			crypto.pbkdf2(password, salt, iterations, len, function(err, derivedKey) {
+			crypto.pbkdf2(password, salt, iterations, len, digest, function(err, derivedKey) {
 				if (err) return fn(err);
 				fn(null, salt, derivedKey.toString('base64'));
 			});
