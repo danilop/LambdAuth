@@ -22,7 +22,7 @@ function computeHash(password, salt, fn) {
 		crypto.randomBytes(len, function(err, salt) {
 			if (err) return fn(err);
 			salt = salt.toString('base64');
-			crypto.pbkdf2(password, salt, iterations, len, function(err, derivedKey) {
+			crypto.pbkdf2(password, salt, iterations, len, 'sha1', function(err, derivedKey) {
 				if (err) return fn(err);
 				fn(null, salt, derivedKey.toString('base64'));
 			});
