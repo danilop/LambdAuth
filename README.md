@@ -30,7 +30,7 @@ A sample implementation can be found at [http://lambdauth.danilop.net](http://la
 
 Copyright (c) 2015 Danilo Poccia, http://danilop.net
 
-This code is licensed under the The MIT License (MIT). Please see the LICENSE file that accompanies this project for the terms of use.
+This code is licensed under the MIT License (MIT). Please see the LICENSE file that accompanies this project for the terms of use.
 
 ## Installation
 
@@ -91,10 +91,10 @@ A sample deployment script using Bash (`deploy.sh`) is provided to update the AW
 Sample HTML pages are provided to showcase how to use this framework with a JavaScript application:
 
 - signup.html - to create a new user, the email address will be validated sending a custom link to the verify.html page
-- login.html - to login in, assuming an authenitcated role with Cognito
+- login.html - to login in, assuming an authenticated role with Cognito
 - verify.html - to validate the email address of a new user
 - changePassword.html - to change password, knowing the old one
-- lostPassword.html - to ask for a passwrod reser, via email
+- lostPassword.html - to ask for a password reset, via email
 - reset.html - to reset the password, linked by the email sent for a lost password
 
 The same use cases can be implemented on a Mobile device using the [AWS Mobile SDK](http://aws.amazon.com/mobile/sdk/).
